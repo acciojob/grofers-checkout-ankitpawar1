@@ -1,31 +1,25 @@
-// script.js
-
 const getSumBtn = document.createElement("button");
-getSumBtn.textContent = "Get Total Price";
+getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
+let table = document.getElementById("table");
+
 
 const getSum = () => {
-    // Get all price element
-    const prices = document.querySelectorAll('.price');
-    let total = 0;
-
-    // Sum up the values
-    prices.forEach(priceElement => {
-        total += parseFloat(priceElement.textContent) || 0;
-    });
-
-    // Check if the total row already exists
-    let totalRow = document.querySelector('#totalRow');
-    if (totalRow) {
-        totalRow.querySelector('.total-price').textContent = total;
-    } else {
-        // Create a new row for total price
-        const table = document.querySelector('table');
-        const newRow = document.createElement('tr');
-        newRow.id = 'totalRow';
-        newRow.innerHTML = `<td>Total Price</td><td class="total-price">${total}</td>`;
-        table.appendChild(newRow);
-    }
+//Add your code here
+  let arr = Array.from(document.querySelectorAll(".price"));
+	let sum = 0;
+	arr.forEach((item)=> {
+		 sum += parseInt(item.innerText);
+	});
+	let row =document.createElement("tr");
+	row.setAttribute('id',"ans");
+	let cell1 = document.createElement("td");
+	cell1.innerText = "Total is: ";
+	let cell2 = document.createElement("td");
+	cell2.innerText = sum;
+	row.appendChild(cell1)
+	row.appendChild(cell2);
+	table.appendChild(row);
 };
 
 getSumBtn.addEventListener("click", getSum);
